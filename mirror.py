@@ -76,7 +76,7 @@ def mirror_pr(upstream, downstream, pr_id):
 		logger.info("Creating pull request.")
 		# blocking cross repo references
 		link = urlparse(original_pull.html_url)
-		link.hostname = "www.github.com"
+		link.netloc = "www.github.com"
 		result = downstream._Repository__create_pull(
 			title=f"{config.mirror_pr_title_prefix}{original_pull.title}",
             body=f"Original PR: {link.geturl()}\n-----\n{original_pull.body}",
