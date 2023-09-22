@@ -3,7 +3,6 @@ import logging
 import subprocess
 import config
 import sys
-from urllib.parse import urlparse
 
 
 def clean_repo():
@@ -75,11 +74,10 @@ def mirror_pr(upstream, downstream, pr_id):
 
 		logger.info("Creating pull request.")
 		# blocking cross repo references
-		link = urlparse(original_pull.html_url)
-		link.netloc = "www.github.com"
+		link = original_pull.html_url.replace("github.com", "www.github.com") if "www" not in original_pull.html_url else original_pull.html_url
 		result = downstream._Repository__create_pull(
 			title=f"{config.mirror_pr_title_prefix}{original_pull.title}",
-            body=f"Original PR: {link.geturl()}\n-----\n{original_pull.body}",
+            body=f"Original PR: {link}\n-----\n{original_pull.body}",
             base="master",
             head=f"{config.mirror_branch_prefix}{pr_id}",
             maintainer_can_modify=True
