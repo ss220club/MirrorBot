@@ -89,9 +89,10 @@ def mirror_pr(upstream: github.Repository.Repository, downstream: github.Reposit
         )
 
         logger.info(f"Pull request created: {result.title} (#{result.number})")
+
         return result
     except:
-        logger.exception("An error occured during mirroring.")
+        logger.exception("An error occurred during mirroring.")
     finally:
         os.chdir(current_directory)
 
@@ -118,6 +119,6 @@ def remirror_pr(upstream, downstream, mirror_pr_id):
                         f"{config.mirror_branch_prefix}{original_pull.number}"], stdout=subprocess.DEVNULL,
                        stderr=subprocess.DEVNULL)
     except:
-        logger.exception("An error occured during remirroring.")
+        logger.exception("An error occurred during remirroring.")
     finally:
         os.chdir(current_directory)
