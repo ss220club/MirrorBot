@@ -12,7 +12,7 @@ downstream_owner = ""
 downstream_repo = ""
 
 local_repo_directory = "local_downstream_clone"
-mirror_pr_title_prefix = "[MIRROR] "
+mirror_pr_title_prefix = "[MIRROR]"
 mirror_branch_prefix = "upstream-merge-"
 
 log_level = logging.INFO

@@ -81,7 +81,7 @@ def mirror_pr(upstream: github.Repository.Repository, downstream: github.Reposit
         link = original_pull.html_url.replace("github.com",
                                               "www.github.com") if "www" not in original_pull.html_url else original_pull.html_url
         result = downstream.create_pull(
-            title=f"{config.mirror_pr_title_prefix}{original_pull.title}",
+            title=f"{config.mirror_pr_title_prefix} #{original_pull.number} {original_pull.title}",
             body=f"Original PR: {link}\n-----\n{original_pull.body}",
             base="master",
             head=f"{config.mirror_branch_prefix}{pr_id}",
